@@ -42,6 +42,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
+import java.util.concurrent.Callable;
 
 /**
  * Created by Aman Jain on 15/07/18.
@@ -245,8 +246,11 @@ public class ProjectRepository {
                 @Override
                 public void success(final Result<DirectMessageEvent> result) {
                     Log.i(TAG, "success: MessageSent");
-                    mBufferChatMessageDao.updateMessage(new MessageEventToChatMessageMapper()
-                            .modelToEntity(result.data.getMessageEvent()), pair.first);
+                    Observable.fromCallable(() -> {
+                        mBufferChatMessageDao.updateMessage(new MessageEventToChatMessageMapper()
+                                .modelToEntity(pair.second.getMessageEvent()), pair.first);
+                        return result.data;
+                    }).subscribeOn(Schedulers.io()).subscribe();
                     emitter.onNext(new Pair(pair.first, result.data));
                     emitter.onComplete();
                 }
