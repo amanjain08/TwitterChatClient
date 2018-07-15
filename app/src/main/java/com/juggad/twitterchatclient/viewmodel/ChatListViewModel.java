@@ -26,11 +26,13 @@ public class ChatListViewModel extends AndroidViewModel {
 
     private LiveData<Resource<String>> mStatusLiveData;
 
+    private BufferChatMessageDao mChatMessageDao;
+
     public ChatListViewModel(@NonNull final Application application) {
         super(application);
-        final BufferChatMessageDao bufferChatMessageDao = new BufferChatMessageDaoImpl(application);
+        mChatMessageDao = new BufferChatMessageDaoImpl(application);
         final TwitterSession twitterSession = TwitterCore.getInstance().getSessionManager().getActiveSession();
-        mChatItemList = bufferChatMessageDao.getLatestChats(String.valueOf(twitterSession.getUserId()));
+        mChatItemList = mChatMessageDao.getLatestChats(String.valueOf(twitterSession.getUserId()));
         mProjectRepository = ProjectRepository.getInstance(application);
         mStatusLiveData = mProjectRepository.mStatusLiveData;
     }
@@ -47,7 +49,11 @@ public class ChatListViewModel extends AndroidViewModel {
         mProjectRepository.refreshChats();
     }
 
-     public LiveData<Resource<String>> getStatusLiveData(){
+    public LiveData<Resource<String>> getStatusLiveData() {
         return mStatusLiveData;
-     }
+    }
+
+    public void clearDB() {
+        mChatMessageDao.deleteAllChatsAndUser();
+    }
 }

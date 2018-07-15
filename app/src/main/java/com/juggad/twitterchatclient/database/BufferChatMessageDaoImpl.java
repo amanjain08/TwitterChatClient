@@ -7,6 +7,7 @@ import com.juggad.twitterchatclient.database.dao.ChatMessageDaoAccess;
 import com.juggad.twitterchatclient.database.db.AppDatabase;
 import com.juggad.twitterchatclient.database.entity.ChatItem;
 import com.juggad.twitterchatclient.database.entity.ChatMessage;
+import io.reactivex.schedulers.Schedulers;
 import java.util.List;
 
 /**
@@ -16,8 +17,10 @@ public class BufferChatMessageDaoImpl implements BufferChatMessageDao {
 
     private ChatMessageDaoAccess mChatMessageDaoAccess;
 
+    private AppDatabase appDatabase;
+
     public BufferChatMessageDaoImpl(Context context) {
-        AppDatabase appDatabase = AppDatabase.getInstance(context);
+        appDatabase = AppDatabase.getInstance(context);
         mChatMessageDaoAccess = appDatabase.getChatMessageDaoAccess();
     }
 
@@ -45,5 +48,14 @@ public class BufferChatMessageDaoImpl implements BufferChatMessageDao {
     public void updateMessage(final ChatMessage chatMessage, final String oldId) {
         mChatMessageDaoAccess
                 .updateChat(oldId, chatMessage.getId(), chatMessage.getSenderId(), chatMessage.getTime(), true);
+    }
+
+    @Override
+    public void deleteAllChatsAndUser() {
+        io.reactivex.Observable.fromCallable(() -> {
+            appDatabase.clearAllTables();
+            return true;
+        }).subscribeOn(Schedulers.io()).subscribe();
+
     }
 }

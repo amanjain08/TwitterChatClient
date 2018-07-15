@@ -17,18 +17,6 @@ import java.util.List;
 @Dao
 public interface ChatMessageDaoAccess extends BaseDao<ChatMessage> {
 
-    @Query("DELETE from chatmessage where id = (:id)")
-    void delete(String id);
-
-    @Query("DELETE FROM chatmessage")
-    void deleteAllChats();
-
-    @Delete
-    int deleteChats(List<ChatMessage> chats);
-
-    @Query("SELECT * FROM chatmessage WHERE id = (:messageId) ")
-    LiveData<ChatMessage> getChat(String messageId);
-
     /**
      * Query fetches list of latest chat message between current and all other users.
      */
@@ -55,19 +43,12 @@ public interface ChatMessageDaoAccess extends BaseDao<ChatMessage> {
             "ORDER BY time DESC")
     LiveData<List<ChatItem>> getLatestChats(String myUserId);
 
-    @Query("SELECT * FROM chatmessage ORDER BY time DESC")
-    LiveData<List<ChatMessage>> getMessages();
-
     @Query("SELECT * FROM chatmessage WHERE sender_id = (:senderId) OR receiver_id = (:senderId) ORDER BY time DESC ")
     LiveData<List<ChatMessage>> getMessages(String senderId);
-
-    @Query("SELECT COUNT(*) FROM chatmessage")
-    int getTotalCount();
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAll(List<ChatMessage> chatMessages);
 
     @Query("UPDATE chatmessage SET id = (:id), sender_id = (:senderId), time = (:time), sync = (:sync) WHERE id=(:oldId)")
     void updateChat(String oldId, String id, String senderId, long time, boolean sync);
-
 }

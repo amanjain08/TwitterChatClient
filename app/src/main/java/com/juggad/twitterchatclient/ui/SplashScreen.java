@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 import com.juggad.twitterchatclient.R;
 import com.juggad.twitterchatclient.ui.userslist.ChatListActivity;
 import com.juggad.twitterchatclient.utils.Status;
@@ -67,7 +68,9 @@ public class SplashScreen extends AppCompatActivity {
             @Override
             public void success(final Result<TwitterSession> result) {
                 Log.d(TAG, "success: " + result.toString());
+                Toast.makeText(SplashScreen.this, "Successfully Logged In", Toast.LENGTH_SHORT).show();
                 startChatActivity();
+                finish();
             }
         });
     }
@@ -79,6 +82,7 @@ public class SplashScreen extends AppCompatActivity {
                     if (status == Status.SUCCESS) {
                         if (loginAuthenticatorResource.getData().isLoggedIn()) {
                             startChatActivity();
+                            finish();
                         } else {
                             startLoginActivity();
                         }

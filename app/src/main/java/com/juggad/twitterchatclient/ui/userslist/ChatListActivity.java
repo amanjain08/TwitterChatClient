@@ -11,11 +11,15 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
+import android.support.v7.app.AlertDialog.Builder;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
+import android.webkit.CookieManager;
+import android.webkit.CookieSyncManager;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.juggad.twitterchatclient.R;
@@ -29,6 +33,7 @@ import com.juggad.twitterchatclient.utils.Status;
 import com.juggad.twitterchatclient.utils.Utils;
 import com.juggad.twitterchatclient.viewmodel.ChatListViewModel;
 import com.squareup.picasso.Picasso;
+import com.twitter.sdk.android.core.TwitterCore;
 import io.reactivex.observers.DefaultObserver;
 import java.util.ArrayList;
 
@@ -51,6 +56,7 @@ public class ChatListActivity extends AppCompatActivity implements OnRefreshList
         mChatListViewModel = ViewModelProviders.of(this).get(ChatListViewModel.class);
         observeViewModel(mChatListViewModel);
         if (Utils.isInternetConnected(this)) {
+            mSwipeRefreshLayout.setRefreshing(true);
             mChatListViewModel.loadFirstChats();
         }
     }
@@ -155,5 +161,30 @@ public class ChatListActivity extends AppCompatActivity implements OnRefreshList
         title.setText(R.string.twitter_chat);
         Picasso.get().load(R.drawable.twitter_blue_logo).into(circleImageView);
         setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setHomeAsUpIndicator(R.drawable.log_out);
+            //To show back button in toolbar
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int i = item.getItemId();
+        if (i == android.R.id.home) {
+            new Builder(this).setMessage("Log out ?").setPositiveButton("Yes", (dialog, which) -> {
+                CookieSyncManager.createInstance(this);
+                CookieManager cookieManager = CookieManager.getInstance();
+                cookieManager.removeSessionCookie();
+                TwitterCore.getInstance().getSessionManager().clearActiveSession();
+                mChatListViewModel.clearDB();
+                finish();
+                Toast.makeText(this, "Successfully logged out", Toast.LENGTH_SHORT).show();
+            }).setNegativeButton("No", null).show();
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
+        }
     }
 }

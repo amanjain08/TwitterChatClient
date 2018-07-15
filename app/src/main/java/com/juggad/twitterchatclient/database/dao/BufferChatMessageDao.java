@@ -20,4 +20,6 @@ public interface BufferChatMessageDao {
 
     void updateMessage(ChatMessage chatMessage, String oldId);
 
+    void deleteAllChatsAndUser();
+
 }

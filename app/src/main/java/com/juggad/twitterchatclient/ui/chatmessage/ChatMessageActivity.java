@@ -100,6 +100,7 @@ public class ChatMessageActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+
     }
 
     private void setObserver(final ChatMessageViewModel chatMessageViewModel) {
