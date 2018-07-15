@@ -1,0 +1,73 @@
+apply plugin: 'com.android.application'
+
+ext{
+    supportAppCompatVersion = '27.1.1'
+    constraintLayoutVersion = '1.1.2'
+    lifecycleVersion = "1.1.1"
+    twitterVersion ="3.1.1"
+    roomVersion = '1.1.1'
+    rxJava2Version = "2.0.2"
+    pagingVersion ='1.0.1'
+}
+
+android {
+    compileSdkVersion 27
+    defaultConfig {
+        applicationId "com.juggad.twitterchatclient"
+        minSdkVersion 16
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ['autovaluegson.defaultCollectionsToEmpty': 'true']
+            }
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation "com.android.support:appcompat-v7:$supportAppCompatVersion"
+    implementation "com.android.support.constraint:constraint-layout:$constraintLayoutVersion"
+    implementation "com.android.support:design:$supportAppCompatVersion"
+    implementation "com.android.support:recyclerview-v7:$supportAppCompatVersion"
+    implementation "com.android.support:cardview-v7:$supportAppCompatVersion"
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    //Lifecycle Architecture
+    implementation "android.arch.lifecycle:extensions:$lifecycleVersion"
+
+    //Twitter SDK
+    implementation "com.twitter.sdk.android:twitter:$twitterVersion"
+
+    //Room Database
+    implementation "android.arch.persistence.room:runtime:$roomVersion"
+    annotationProcessor "android.arch.persistence.room:compiler:$roomVersion"
+
+    //RX Java 2
+    implementation "io.reactivex.rxjava2:rxandroid:$rxJava2Version"
+    implementation 'io.reactivex.rxjava2:rxjava:2.x.x'
+
+    //Picasso
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
+    //Gson
+    implementation 'com.google.code.gson:gson:2.8.2'
+
+    //Paging Library
+    implementation "android.arch.paging:runtime:$pagingVersion"
+}
