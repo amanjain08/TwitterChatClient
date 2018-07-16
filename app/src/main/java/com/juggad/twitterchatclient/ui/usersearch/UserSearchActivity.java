@@ -1,5 +1,6 @@
 package com.juggad.twitterchatclient.ui.usersearch;
 
+import android.app.ProgressDialog;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 import com.juggad.twitterchatclient.R;
 import com.juggad.twitterchatclient.database.entity.UserEntity;
 import com.juggad.twitterchatclient.ui.CircleImageView;
@@ -30,6 +32,8 @@ public class UserSearchActivity extends AppCompatActivity {
 
     UserSearchViewModel mUserSearchViewModel;
 
+    ProgressDialog mProgressDialog;
+
     @Override
     protected void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +45,12 @@ public class UserSearchActivity extends AppCompatActivity {
 
     private void initUI() {
         setToolbar();
+        mProgressDialog = new ProgressDialog(this);
+        mProgressDialog.setMessage("Loading..");
+        mProgressDialog.setCancelable(true);
+        mProgressDialog.setCanceledOnTouchOutside(false);
+        mProgressDialog.show();
+
         mRecyclerView = findViewById(R.id.recycler_view_user_search);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mUserSearchAdapter = new UserSearchAdapter();
@@ -84,6 +94,11 @@ public class UserSearchActivity extends AppCompatActivity {
     private void getUsers(final UserSearchViewModel userSearchViewModel) {
         userSearchViewModel.mUsers.observe(this, userEntities -> {
             mUserSearchAdapter.submitList(userEntities);
+            mProgressDialog.dismiss();
+        });
+        userSearchViewModel.getNetworkErrors().observe(this, message -> {
+            Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+            mProgressDialog.dismiss();
         });
     }
 
