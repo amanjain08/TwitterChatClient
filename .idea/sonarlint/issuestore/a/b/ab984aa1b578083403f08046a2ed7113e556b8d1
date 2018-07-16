@@ -1,4 +1,0 @@
-
-Usquid:S1854"9Remove this useless assignment to local variable "error".(Ëƒª®8…ÜØÈ,
-Fsquid:S1481"*Remove this unused "error" local variable.(Ëƒª®8…ÜØÈ,
-squid:S1450"`Remove the "mTwitterApiClient" field and declare it as a local variable in the relevant methods.(¦ŞŠóÿÿÿÿÿ8…ÜØÈ,

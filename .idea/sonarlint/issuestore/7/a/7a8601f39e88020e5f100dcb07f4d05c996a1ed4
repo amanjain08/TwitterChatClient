@@ -1,19 +1,0 @@
-
-Bsquid:S1199"-Extract this nested code block into a method.(’æˆì
-Gsquid:S1199"-Extract this nested code block into a method.(íò÷Üüÿÿÿÿ
-Gsquid:S1199"-Extract this nested code block into a method.(Î—­Šşÿÿÿÿ
-gsquid:HiddenFieldCheck"BRename "string_adapter" which hides the field declared at line 22.(€¹–Òÿÿÿÿÿ
-ssquid:HiddenFieldCheck"NRename "list__messageEvent_adapter" which hides the field declared at line 23.(Ê°ú½øÿÿÿÿ
-gsquid:HiddenFieldCheck"BRename "string_adapter" which hides the field declared at line 22.(€¹–Òÿÿÿÿÿ
-ssquid:HiddenFieldCheck"NRename "list__messageEvent_adapter" which hides the field declared at line 23.(Ê°ú½øÿÿÿÿ
-csquid:S00101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(‚¹Âõ
-osquid:S00116"YRename this field "string_adapter" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(üØ¼Š
-{squid:S00116"eRename this field "list__messageEvent_adapter" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(„àÌß
-lsquid:S00117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(€¹–Òÿÿÿÿÿ
-lsquid:S00117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ê°ú½øÿÿÿÿ
-lsquid:S00117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ı‘ıÿÿÿÿ
-lsquid:S00117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(€¹–Òÿÿÿÿÿ
-lsquid:S00117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ê°ú½øÿÿÿÿ
-ssquid:UselessImportCheck"QRemove this unnecessary import: java.lang classes are always implicitly imported.(ú®Ú±
-xsquid:UselessImportCheck"QRemove this unnecessary import: java.lang classes are always implicitly imported.(ôİÕıÿÿÿÿ
-xsquid:UselessImportCheck"QRemove this unnecessary import: java.lang classes are always implicitly imported.(¤î˜Óüÿÿÿÿ
