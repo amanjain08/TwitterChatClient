@@ -2,7 +2,6 @@ package com.juggad.twitterchatclient.viewmodel;
 
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
-import android.content.Context;
 import com.juggad.twitterchatclient.model.LoginAuthenticator;
 import com.juggad.twitterchatclient.utils.Resource;
 import com.juggad.twitterchatclient.utils.Status;
@@ -17,7 +16,7 @@ public class SplashScreenViewModel extends ViewModel {
 
     private MutableLiveData<Resource<LoginAuthenticator>> mLiveData = new MutableLiveData<>();
 
-    public void checkLoggin(Context context) {
+    public void checkLogin() {
         TwitterSession twitterSession = TwitterCore.getInstance().getSessionManager().getActiveSession();
         boolean loggedIn = twitterSession != null;
         mLiveData.postValue(new Resource<>(Status.SUCCESS, new LoginAuthenticator(loggedIn), null));

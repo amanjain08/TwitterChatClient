@@ -32,4 +32,8 @@ public class UserSearchViewModel extends AndroidViewModel {
         networkErrors = mFriendsRepository.getUsers().getNetworkError();
         mFriendsRepository.fetchUserListFromServer();
     }
+
+    public LiveData<String> getNetworkErrors() {
+        return networkErrors;
+    }
 }

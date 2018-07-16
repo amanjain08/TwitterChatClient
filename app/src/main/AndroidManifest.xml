@@ -20,7 +20,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.userslist.ChatListActivity" />
+        <activity android:name=".ui.chatlist.ChatListActivity" />
         <activity
             android:name=".ui.chatmessage.ChatMessageActivity"
             android:windowSoftInputMode="stateHidden" />

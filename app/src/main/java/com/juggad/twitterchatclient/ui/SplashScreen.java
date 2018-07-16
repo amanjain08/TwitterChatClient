@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 import com.juggad.twitterchatclient.R;
-import com.juggad.twitterchatclient.ui.userslist.ChatListActivity;
+import com.juggad.twitterchatclient.ui.chatlist.ChatListActivity;
 import com.juggad.twitterchatclient.utils.Status;
 import com.juggad.twitterchatclient.viewmodel.SplashScreenViewModel;
 import com.twitter.sdk.android.core.Callback;
@@ -41,7 +41,7 @@ public class SplashScreen extends AppCompatActivity {
                 .get(SplashScreenViewModel.class);
 
         observeViewModel(mSplashScreenViewModel);
-        mSplashScreenViewModel.checkLoggin(this);
+        mSplashScreenViewModel.checkLogin();
     }
 
     @Override

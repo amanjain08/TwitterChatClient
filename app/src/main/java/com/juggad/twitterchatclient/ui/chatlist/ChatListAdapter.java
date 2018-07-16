@@ -1,4 +1,4 @@
-package com.juggad.twitterchatclient.ui.userslist;
+package com.juggad.twitterchatclient.ui.chatlist;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.juggad.twitterchatclient.R;
 import com.juggad.twitterchatclient.database.entity.ChatItem;
 import com.juggad.twitterchatclient.ui.CircleImageView;
-import com.juggad.twitterchatclient.ui.userslist.ChatListAdapter.ChatItemView;
+import com.juggad.twitterchatclient.ui.chatlist.ChatListAdapter.ChatItemView;
 import com.juggad.twitterchatclient.utils.Utils;
 import com.squareup.picasso.Picasso;
 import io.reactivex.subjects.PublishSubject;

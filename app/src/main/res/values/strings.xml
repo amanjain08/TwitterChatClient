@@ -1,9 +1,9 @@
-<resources >
+<resources>
     <string name="app_name">TwitterChatClient</string>
     <string name="twitter_chat_client">Twitter Chat Client</string>
-    <string name="com.twitter.sdk.android.CONSUMER_KEY">z6d3FQKsjKwdDAbYoYNXFBdPn</string>
-    <string name="com.twitter.sdk.android.CONSUMER_SECRET">MoQHMvhrbjFl1FW4XxWDu0Zq5kCQRpCau4EmDXn95LTgJXHWut</string>
+    <string name="com.twitter.sdk.android.CONSUMER_KEY">twitter-consumer-key</string>
+    <string name="com.twitter.sdk.android.CONSUMER_SECRET">twitter-consumer-secret</string>
     <string name="twitter_chat">Twitter Chat</string>
-    <string name="your_message_hint">Your message ...</string>
+    <string name="your_message_hint">Your message …</string>
     <string name="new_message">New Message</string>
 </resources>

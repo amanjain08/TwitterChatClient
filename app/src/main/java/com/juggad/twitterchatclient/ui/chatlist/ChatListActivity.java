@@ -1,4 +1,4 @@
-package com.juggad.twitterchatclient.ui.userslist;
+package com.juggad.twitterchatclient.ui.chatlist;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
